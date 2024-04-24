@@ -1,0 +1,1 @@
+# symlink this file to the home directory
