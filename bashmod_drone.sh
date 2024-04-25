@@ -1,5 +1,4 @@
-# symlink this file to the home directory
-# ln -s bashmod_drone.sh /home/drone/bashmod_drone.sh
+# symlink this file to the home directory, See README.md
 
 export MYCONFIG_DIR=/home/drone/dev/computer-config/
 
