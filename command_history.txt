@@ -33,3 +33,8 @@ sudo fallocate -l 16G /mnt/16GB.swap
 sudo mkswap /mnt/16GB.swap
 sudo swapon /mnt/16GB.swap
 echo "/mnt/16GB.swap  none  swap  sw 0  0" | sudo tee /etc/fstab
+
+## Install JetPack
+
+
+
