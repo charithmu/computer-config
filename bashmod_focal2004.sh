@@ -1,53 +1,50 @@
-# symlink this file to the home directory, See README.md
+## Ubuntu 20.04 (Focal) CUSTOM PERSONAL CONFIGURATIONS ##
 
-export MYCONFIG_DIR=/home/charith/dev/computer-config/
+# symlink this file to the home directory and source in ~/.bashrc, See README.md
 
-source $MYCONFIG_DIR/bashmod_common.sh
+############################ Common Aliases and other ##############################
 
-alias emods='subl $MYCONFIG_DIR/bashmod_focal2004.sh'
+# export COMPUTER_CONFIG_DIR=/home/charith/dev/computer-config/
+source $COMPUTER_CONFIG_DIR/bashmod_common.sh
 
-# CUDA
+alias emods='subl $COMPUTER_CONFIG_DIR/bashmod_focal2004.sh'
+
+################# CUDA ###########################
+
 export PATH=/usr/local/cuda-12.4/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-12.4/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
-# Switch CUDA
-# function cuda121() { \
-# PATH=$(echo "$PATH" | sed 's/cuda-12.3/cuda-12.1/g'); \
-# LD_LIBRARY_PATH=$(echo "$LD_LIBRARY_PATH" | sed 's/cuda-12.3/cuda-12.1/g'); \
-# echo $PATH; \
-# echo $LD_LIBRARY_PATH; }
+############################ ROS ##############################
 
-
-## ROS
 export ROS1_INSTALL_PATH=/opt/ros/noetic
 
+# Source ROS1
 alias sros1='source ${ROS1_INSTALL_PATH}/setup.bash'
+# Source current workspace
+alias srosws='source $(catkin locate -d)/setup.bash'
+
+alias cdros1ws='cd ~/dev/ROS/ros1_ws'
 alias sros1ws='source /home/charith/dev/ROS/ros1ws/devel/setup.bash'
 
-alias checkros='printenv | grep ROS'
-alias checkrosmasteruri='echo $ROS_MASTER_URI'
-alias checkrosip='echo $ROS_IP'
-alias checkroshostname='echo $ROS_HOSTNAME'
+# export ROS_MASTER_URI=http://192.168.0.100:11311
+# export ROS_IP=192.168.0.200
 
-function checkrosnetwork() {
-	checkrosmasteruri;
-	checkrosip;
-	checkroshostname;
-}
-
-function killgazebo() { killall -9 gzclient; killall -9 gzserver; }
-
-
-# Force Nvidia
-# export __NV_PRIME_RENDER_OFFLOAD=1
-# export __GLX_VENDOR_LIBRARY_NAME=nvidia
-alias nvidiaon='export __NV_PRIME_RENDER_OFFLOAD=1; export __GLX_VENDOR_LIBRARY_NAME=nvidia'
+############################ Dev Configs ##############################
 
 ## Humantech Project
-source $MYCONFIG_DIR/bashmod_humantech.sh
+source $COMPUTER_CONFIG_DIR/bashmod_humantech.sh
 
+# PWD
+# cd /home/charith/dev
 
-
-
+## Mouse lag fix
+# sudo sh -c 'echo N > /sys/module/drm_kms_helper/parameters/poll'
+# sudo sh -c 'echo "options drm_kms_helper poll=0" >> /etc/modprobe.d/local.conf'
+# sudo update-initramfs -u
+# Append to /etc/environment
+# MUTTER_DEBUG_ENABLE_ATOMIC_KMS=0
+# MOZ_ENABLE_WAYLAND=1
+# chrome://flags/#ozone-platform-hint
+# 
 
 
